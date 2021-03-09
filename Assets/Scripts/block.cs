@@ -6,19 +6,31 @@ public class block : MonoBehaviour
 {
     [SerializeField] AudioClip breakSound;
     [SerializeField] GameObject blockSparks;
+    [SerializeField] int maxHits = 2;
+    [SerializeField] int timesHits;
     level level;
     GameStatus gameStatus;
 
     private void Start()
     {
         level = FindObjectOfType<level>();
-        level.countBreakableBlock();
+        if (tag == "Breakable")
+        {
+            level.countBreakableBlock();
+        }
         gameStatus = FindObjectOfType<GameStatus>();
 
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        DestroyedBlock();
+        if (tag == "Breakable")
+        {
+            timesHits++;
+            if (timesHits >= maxHits)
+            {
+                DestroyedBlock();
+            }
+        }
 
     }
 
