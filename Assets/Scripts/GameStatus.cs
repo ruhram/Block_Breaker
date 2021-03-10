@@ -7,7 +7,7 @@ public class GameStatus : MonoBehaviour
     [Range(.1f,10f)][SerializeField] float gameSpeed = 1f;
     [SerializeField] int PointPerBlock = 83;
     [SerializeField] TextMeshProUGUI scoreText;
-
+    [SerializeField] bool isAutoplayEnabled;
     [SerializeField] int currentScore = 0;
     // Start is called before the first frame update
     private void Awake()
@@ -42,5 +42,9 @@ public class GameStatus : MonoBehaviour
     public void ResetGame()
     {
         Destroy(gameObject);
+    }
+    public bool isAutoPlayEnabled()
+    {
+        return isAutoplayEnabled;
     }
 }
